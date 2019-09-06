@@ -52,11 +52,24 @@ class App extends Component {
 handleDelete = (listId, cardId) => {
   console.log(this.state.lists);
   console.log(listId, cardId);
-    const newList = this.state.lists.map(list => list.cardIds.filter(card => card !== id))
-//   console.log(newList);
-//   this.setState({
-//     cardIds: newList
-//   });
+  
+  // //Creates an array from list of lists with a function...
+  // const newList = this.state.lists.map(list => {
+  //   //..where if the list ID matches the list pulled from props...
+  //   if (list.id === listId){
+  //     //A new cardIds variable for the list is generated that filters the list
+  //     //only adding items that don't include our cardId.
+  //    const newCardIds = list.cardIds.filter(listCardId => listCardId !== cardId);
+  //    //This returns an object with a key 
+  //    return Object.assign({}, list, {cardIds: newCardIds});
+  //   }
+  //   return list;
+  // });
+
+  //   console.log(newList);
+  // this.setState({
+  //   lists: newList
+  // });
 
 }
 
