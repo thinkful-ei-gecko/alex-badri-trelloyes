@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import List from './List'
 import './App.css';
 
+/*
+const newRandomCard = () => {
+  const id = Math.random().toString(36).substring(2, 4)
+    + Math.random().toString(36).substring(2, 4);
+  return {
+    id,
+    title: `Random Card ${id}`,
+    content: 'lorem ipsum',
+  }
+}
+
+function omit(obj, keyToOmit) {
+  return Object.entries(obj).reduce(
+    (newObj, [key, value]) =>
+        key === keyToOmit ? newObj : {...newObj, [key]: value},
+    {}
+  );
+}
+*/
+
 class App extends Component {
   // static defaultProps = {
   //   store: {
@@ -50,9 +70,6 @@ class App extends Component {
 }
 
 handleDelete = (listId, cardId) => {
-  console.log(this.state.lists);
-  console.log(listId, cardId);
-  
   //Creates an array from list of lists with a function...
   const newList = this.state.lists.map(list => {
     //..where if the list ID matches the list pulled from props...
@@ -65,8 +82,6 @@ handleDelete = (listId, cardId) => {
     }
     return list;
   });
-
-    console.log(newList);
   this.setState({
     lists: newList
   });
@@ -75,7 +90,21 @@ handleDelete = (listId, cardId) => {
 
   // handleDelete(card){ console.log('handle delete item called', {card}) }
 
-  handleAddRandom(){ console.log('handle add random item called') }
+  handleAddRandom = (listId) => { 
+//adds random card from store.allCards to list
+    const newList = this.state.lists.map(list => {
+      if (list.id === listId) {
+        let numCards = Object.keys(this.state.allCards).length;
+        let randomIndex = Math.ceil(Math.random() * numCards);
+        let randomCardId = Object.keys(this.state.allCards)[randomIndex];
+        list.cardIds.push(randomCardId);
+      }
+      return list;
+  });
+  this.setState({
+    lists: newList
+  });
+}
 
   render() {
     return (
