@@ -49,13 +49,14 @@ class App extends Component {
   },
 }
 
-handleDelete = (id) => {
+handleDelete = (listId, cardId) => {
   console.log(this.state.lists);
-  const newList = this.state.lists.map(list => console.log(list))
-  this.setState({
-    cardIds: newList
-  });
-  console.log(id);
+  console.log(listId, cardId);
+    const newList = this.state.lists.map(list => list.cardIds.filter(card => card !== id))
+//   console.log(newList);
+//   this.setState({
+//     cardIds: newList
+//   });
 
 }
 
@@ -73,6 +74,7 @@ handleDelete = (id) => {
           {this.state.lists.map(list => (
             <List
               key={list.id}
+              id={list.id}
               header={list.header}
               cards={list.cardIds.map(id => this.state.allCards[id])}
               onDeleteItem = {this.handleDelete}
